@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.unity3d.player" xmlns:tools="http://schemas.android.com/tools">
+  <application>
+    <activity android:name="com.unity3d.player.UnityPlayerActivity" android:theme="@style/UnityThemeSelector" android:exported="true">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+
+      <!-- Intent filter to handle opening .fbx files from other apps -->
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="file" />
+        <data android:scheme="content" />
+        <data android:host="*" />
+        
+        <!-- Handle specific file extensions via path pattern -->
+        <data android:pathPattern=".*\\.fbx" />
+        <data android:pathPattern=".*\\.obj" />
+        <data android:pathPattern=".*\\.gltf" />
+        <data android:pathPattern=".*\\.glb" />
+        
+        <!-- Also handle via mime types which WhatsApp/files apps often use -->
+        <data android:mimeType="application/octet-stream" />
+        <data android:mimeType="application/x-fbx" />
+        <data android:mimeType="*/*" />
+      </intent-filter>
+    </activity>
+  </application>
+</manifest>
